@@ -159,10 +159,6 @@ class Polyedr:
                         self.edges.append(Edge(vertexes[n - 1], vertexes[n]))
                     # задание самой грани
                     self.facets.append(Facet(vertexes))
-        self.al=alpha
-        self.be=beta
-        self.ga=gamma
-        self.c=c
 
     # Метод изображения полиэдра
     def draw(self, tk):

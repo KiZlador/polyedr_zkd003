@@ -4,9 +4,11 @@ from operator import add
 from common.r3 import R3
 from common.tk_drawer import TkDrawer
 from math import sqrt
-from shadow.polyedr import Polyedr,Facet,Edge
+from shadow.polyedr import Polyedr, Facet, Edge
+
 
 class Square:
+
     def __init__(self, file):
 
         # списки вершин, рёбер и граней полиэдра
@@ -15,7 +17,7 @@ class Square:
         # список строк файла
         with open(file) as f:
             for i, line in enumerate(f):
-                if i==0:
+                if i == 0:
                     buf = line.split()
                 elif i == 1:
                     # во второй строке число вершин, граней и рёбер полиэдра
@@ -38,20 +40,20 @@ class Square:
                     self.facets.append(Facet(vertexes))
 
     def square(self):
-        S=0
+        S = 0
         for f in self.facets:
-            d=0
-            s=0
+            d = 0
+            s = 0
             for i in range(len(f.vertexes)):
-                if f.vertexes[i].y>1 or f.vertexes[i].y<-3:
-                    d+=1
-                if d>2:
+                if f.vertexes[i].y > 1 or f.vertexes[i].y < -3:
+                    d += 1
+                if d > 2:
                     break
-            if d<=2:
-                for i in range(2,len(f.vertexes)):
-                    a=f.vertexes[i].__sub__(f.vertexes[0])
-                    b=f.vertexes[i-1].__sub__(f.vertexes[0])
-                    res=a.cross(b)
-                    s+=sqrt(res.x**2+res.y**2+res.z**2)
-            S+=s
+            if d <= 2:
+                for i in range(2, len(f.vertexes)):
+                    a = f.vertexes[i].__sub__(f.vertexes[0])
+                    b = f.vertexes[i-1].__sub__(f.vertexes[0])
+                    res = a.cross(b)
+                    s += sqrt(res.x**2+res.y**2+res.z**2)
+            S += s
         return S/2
